@@ -3,6 +3,7 @@ import { Navigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { GraduationCap, School, Users, BookOpen, TrendingUp, TestTube } from 'lucide-react';
+import Logo from '@/components/ui/logo';
 
 const Index = () => {
   const { user, loading } = useAuth();
@@ -28,15 +29,7 @@ const Index = () => {
       {/* Header */}
       <header className="container mx-auto px-4 py-6">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <div className="bg-primary text-primary-foreground p-2 rounded-lg">
-              <GraduationCap className="h-6 w-6" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold">NaWe-SMS</h1>
-              <p className="text-sm text-muted-foreground">School Management System</p>
-            </div>
-          </div>
+          <Logo size="lg" showText={true} clickable={true} />
           <Button asChild>
             <Link to="/auth">Get Started</Link>
           </Button>

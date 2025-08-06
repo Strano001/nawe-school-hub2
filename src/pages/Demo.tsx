@@ -43,7 +43,7 @@ const Demo = () => {
     await signOut();
     toast({
       title: "Demo Session Ended",
-      description: "All demo data has been reset. Thanks for exploring NaWe-SMS!",
+      description: "Thanks for exploring NaWe-SMS! You can sign in again anytime.",
     });
   };
 

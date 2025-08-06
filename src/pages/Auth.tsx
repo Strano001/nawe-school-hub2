@@ -127,23 +127,31 @@ const Auth = () => {
               <TestTube className="h-4 w-4" />
               Demo Accounts
             </CardTitle>
+            <CardDescription className="text-xs">
+              Click any role below to auto-fill login credentials
+            </CardDescription>
           </CardHeader>
           <CardContent className="pt-0">
-            <div className="grid grid-cols-2 gap-2">
-              {DEMO_USERS.slice(0, 4).map((user, index) => (
+            <div className="grid grid-cols-2 gap-2 mb-3">
+              {DEMO_USERS.map((user, index) => (
                 <Button
                   key={index}
                   variant="outline"
                   size="sm"
                   onClick={() => loginWithDemo(user)}
-                  className="text-xs"
+                  className="text-xs hover:bg-primary/10 hover:text-primary hover:border-primary/50 transition-all duration-200"
                 >
-                  {user.role.replace('_', ' ')}
+                  {user.role.replace('_', ' ').split(' ').map(word => 
+                    word.charAt(0).toUpperCase() + word.slice(1)
+                  ).join(' ')}
                 </Button>
               ))}
             </div>
-            <p className="text-xs text-muted-foreground mt-2">
-              Click to auto-fill login credentials
+            <div className="bg-muted/50 p-2 rounded text-xs">
+              <p className="font-medium text-foreground mb-1">Demo Credentials:</p>
+              <p className="text-muted-foreground">Email: role@nawe.ng</p>
+              <p className="text-muted-foreground">Password: Demo123!</p>
+            </div>
             </p>
           </CardContent>
         </Card>

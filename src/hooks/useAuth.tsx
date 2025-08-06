@@ -101,6 +101,39 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, []);
 
   const signIn = async (email: string, password: string) => {
+    // Check if this is a demo account first
+    const isDemoAccount = DEMO_USERS.some(user => user.email === email);
+    
+    if (isDemoAccount) {
+      // For demo accounts, try to create the user if they don't exist
+      const demoUser = DEMO_USERS.find(user => user.email === email);
+      if (demoUser && demoUser.password === password) {
+        // Try to sign in first
+        const { error: signInError } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+        
+        if (!signInError) {
+          return { error: null };
+        }
+        
+        // If sign in fails, try to create the demo user
+        const { error: createError } = await createDemoUser(demoUser);
+        if (createError) {
+          return { error: createError };
+        }
+        
+        // Now try to sign in again
+        const { error: retrySignInError } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+        
+        return { error: retrySignInError };
+      }
+    }
+    
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,

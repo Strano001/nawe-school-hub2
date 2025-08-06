@@ -76,15 +76,7 @@ const Dashboard = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <img 
-                src="/lovable-uploads/a34045c0-a003-4c9a-98cb-3cff3573fdad.png" 
-                alt="NaWe Logo" 
-                className="h-10 w-10 object-contain"
-              />
-              <div>
-                <h1 className="text-2xl font-bold">NaWe-SMS</h1>
-                <p className="text-sm text-muted-foreground">School Management System</p>
-              </div>
+              <Logo size="md" showText={true} clickable={true} />
             </div>
             <div className="flex items-center space-x-4">
               <Button variant="ghost" size="sm">
