@@ -1,5 +1,5 @@
 import { useAuth } from '@/hooks/useAuth';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -89,9 +89,9 @@ const Dashboard = () => {
                 <Bell className="h-4 w-4" />
               </Button>
               <Button variant="ghost" size="sm" asChild>
-                <a href={ROUTES.TEST}>
+                <Link to={ROUTES.TEST}>
                   <TestTube className="h-4 w-4" />
-                </a>
+                </Link>
               </Button>
               <Button variant="outline" onClick={handleSignOut}>
                 <LogOut className="h-4 w-4 mr-2" />

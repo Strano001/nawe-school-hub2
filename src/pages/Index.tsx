@@ -1,5 +1,5 @@
 import { useAuth } from '@/hooks/useAuth';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { GraduationCap, School, Users, BookOpen, TrendingUp, TestTube } from 'lucide-react';
@@ -38,7 +38,7 @@ const Index = () => {
             </div>
           </div>
           <Button asChild>
-            <a href="/auth">Get Started</a>
+            <Link to="/auth">Get Started</Link>
           </Button>
         </div>
       </header>
@@ -55,13 +55,13 @@ const Index = () => {
           </p>
           <div className="flex items-center justify-center gap-4">
             <Button size="lg" asChild>
-              <a href="/auth">Start Free Trial</a>
+              <Link to="/auth">Start Free Trial</Link>
             </Button>
             <Button variant="outline" size="lg" asChild>
-              <a href="/test">
+              <Link to="/test">
                 <TestTube className="h-4 w-4 mr-2" />
                 Test System
-              </a>
+              </Link>
             </Button>
           </div>
         </div>
@@ -152,7 +152,7 @@ const Index = () => {
             </CardHeader>
             <CardContent>
               <Button size="lg" asChild className="w-full sm:w-auto">
-                <a href="/auth">Get Started Today</a>
+                <Link to="/auth">Get Started Today</Link>
               </Button>
               <p className="text-sm text-muted-foreground mt-4">
                 Free trial • No credit card required • Setup in minutes

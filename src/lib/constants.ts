@@ -75,4 +75,4 @@ export const DEMO_USERS = [
     first_name: 'James',
     last_name: 'Parent',
   },
-] as const;
+];
