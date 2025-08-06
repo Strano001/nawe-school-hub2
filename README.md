@@ -1,73 +1,191 @@
 # Welcome to your Lovable project
 
-## Project info
+# NaWe-SMS - School Management System
 
-**URL**: https://lovable.dev/projects/e3d218ea-45fb-4140-b342-e09877301f03
+A comprehensive, multi-tenant school management system designed specifically for Nigerian educational institutions.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- **Multi-tenant Architecture**: Support for multiple schools with isolated data
+- **Role-based Access Control**: 9 distinct user roles with appropriate permissions
+- **Nigerian Term System**: Built-in support for the three-term academic system
+- **Modern UI/UX**: Clean, responsive design with dark/light mode support
+- **Real-time Updates**: Live data synchronization across all users
+- **Comprehensive Testing**: Built-in test suite for system validation
 
-**Use Lovable**
+## User Roles
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/e3d218ea-45fb-4140-b342-e09877301f03) and start prompting.
+1. **Super Admin** - System-wide administration
+2. **School Admin** - School-level administration
+3. **Principal** - School leadership and oversight
+4. **Teacher** - Classroom management and instruction
+5. **Student** - Learning and academic tracking
+6. **Parent** - Child progress monitoring
+7. **Accountant** - Financial management
+8. **Cashier** - Payment processing
+9. **Auditor** - Financial auditing and compliance
 
-Changes made via Lovable will be committed automatically to this repo.
+## Quick Start
 
-**Use your preferred IDE**
+### Prerequisites
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- Node.js 18+ and npm
+- Supabase account (for database and authentication)
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Installation
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
+1. Clone the repository:
+```bash
 git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
 cd <YOUR_PROJECT_NAME>
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
+2. Install dependencies:
+```bash
+npm install
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Set up environment variables:
+```bash
+cp .env.example .env
+# Edit .env with your Supabase credentials
+```
+
+4. Start the development server:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Testing the System
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+1. Visit `/test` to access the comprehensive test suite
+2. Run automated tests to verify system functionality
+3. Create demo users for testing different roles
+4. Use the demo accounts provided in the authentication page
 
-**Use GitHub Codespaces**
+## Demo Accounts
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+For testing purposes, the following demo accounts are available:
 
-## What technologies are used for this project?
+- **School Admin**: admin@demo.school / demo123
+- **Principal**: principal@demo.school / demo123
+- **Teacher**: teacher@demo.school / demo123
+- **Student**: student@demo.school / demo123
+- **Parent**: parent@demo.school / demo123
 
-This project is built with:
+## Technology Stack
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- **Frontend**: React 18, TypeScript, Vite
+- **UI Framework**: Tailwind CSS, shadcn/ui
+- **Backend**: Supabase (PostgreSQL, Authentication, Real-time)
+- **State Management**: React Query (TanStack Query)
+- **Routing**: React Router v6
+- **Form Handling**: React Hook Form with Zod validation
+- **Testing**: Built-in test suite with automated validation
 
-## How can I deploy this project?
+## Database Schema
 
-Simply open [Lovable](https://lovable.dev/projects/e3d218ea-45fb-4140-b342-e09877301f03) and click on Share -> Publish.
+The system uses a multi-tenant PostgreSQL database with the following key tables:
 
-## Can I connect a custom domain to my Lovable project?
+- `schools` - School information and settings
+- `profiles` - User profiles extending Supabase auth
+- `academic_sessions` - Academic year management
+- `terms` - Nigerian three-term system
+- `classes` - Class/grade management
+- `subjects` - Subject/course management
 
-Yes, you can!
+## Security Features
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+- **Row Level Security (RLS)**: Database-level access control
+- **Multi-tenant Isolation**: Complete data separation between schools
+- **Role-based Permissions**: Granular access control per user role
+- **Secure Authentication**: Supabase Auth with email/password
+- **Input Validation**: Comprehensive client and server-side validation
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## Development
+
+### Project Structure
+
+```
+src/
+├── components/          # Reusable UI components
+├── hooks/              # Custom React hooks
+├── integrations/       # External service integrations
+├── lib/                # Utility functions and constants
+├── pages/              # Route components
+├── types/              # TypeScript type definitions
+└── utils/              # Helper functions
+```
+
+### Key Files
+
+- `src/hooks/useAuth.tsx` - Authentication logic
+- `src/lib/constants.ts` - Application constants and demo data
+- `src/pages/Test.tsx` - Comprehensive test suite
+- `src/utils/validation.ts` - Form validation schemas
+- `src/utils/formatters.ts` - Data formatting utilities
+
+### Adding New Features
+
+1. Create new components in `src/components/`
+2. Add new pages in `src/pages/`
+3. Update routing in `src/App.tsx`
+4. Add database migrations in `supabase/migrations/`
+5. Update TypeScript types in `src/types/`
+
+## Testing
+
+The system includes a comprehensive test suite accessible at `/test`:
+
+- **Database Connection Tests**: Verify Supabase connectivity
+- **Authentication Tests**: Test user registration and login
+- **Role-based Access Tests**: Validate permission systems
+- **Data Isolation Tests**: Ensure multi-tenant security
+- **Data Integrity Tests**: Verify database relationships
+
+## Deployment
+
+### Production Deployment
+
+1. Build the application:
+```bash
+npm run build
+```
+
+2. Deploy to your preferred hosting platform:
+   - Vercel (recommended)
+   - Netlify
+   - AWS Amplify
+   - Any static hosting service
+
+3. Set up environment variables in your hosting platform
+
+### Database Setup
+
+1. Create a new Supabase project
+2. Run the provided migrations in `supabase/migrations/`
+3. Configure Row Level Security policies
+4. Update environment variables with your Supabase credentials
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run the test suite
+5. Submit a pull request
+
+## Support
+
+For support and questions:
+- Check the test suite at `/test` for system validation
+- Review the demo data and accounts
+- Consult the comprehensive documentation
+
+## License
+
+This project is licensed under the MIT License.
+
+---
+
+**NaWe-SMS** - Empowering Nigerian Education Through Technology

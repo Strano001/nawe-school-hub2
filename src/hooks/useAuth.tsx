@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState, ReactNode } from 'react
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
 import { Profile } from '@/types/auth';
+import { DEMO_SCHOOL } from '@/lib/constants';
 
 interface AuthContextType {
   user: User | null;
@@ -16,6 +17,13 @@ interface AuthContextType {
     role: string;
   }) => Promise<{ error: any }>;
   signOut: () => Promise<void>;
+  createDemoUser: (userData: {
+    email: string;
+    password: string;
+    first_name: string;
+    last_name: string;
+    role: string;
+  }) => Promise<{ error: any }>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -144,6 +152,49 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     return { error: null };
   };
 
+  const createDemoUser = async (userData: {
+    email: string;
+    password: string;
+    first_name: string;
+    last_name: string;
+    role: string;
+  }) => {
+    const { data, error } = await supabase.auth.signUp({
+      email: userData.email,
+      password: userData.password,
+      options: {
+        data: {
+          first_name: userData.first_name,
+          last_name: userData.last_name,
+          role: userData.role,
+          school_id: DEMO_SCHOOL.id,
+        }
+      }
+    });
+
+    if (error) return { error };
+
+    // Create profile manually for demo user
+    if (data.user) {
+      const { error: profileError } = await supabase
+        .from('profiles')
+        .insert({
+          id: data.user.id,
+          school_id: DEMO_SCHOOL.id,
+          role: userData.role as any,
+          first_name: userData.first_name,
+          last_name: userData.last_name,
+        });
+
+      if (profileError) {
+        console.error('Error creating demo profile:', profileError);
+        return { error: profileError };
+      }
+    }
+
+    return { error: null };
+  };
+
   const signOut = async () => {
     await supabase.auth.signOut();
   };
@@ -156,6 +207,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     signIn,
     signUp,
     signOut,
+    createDemoUser,
   };
 
   return (

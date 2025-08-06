@@ -13,9 +13,11 @@ import {
   School,
   TrendingUp,
   Clock,
-  Bell
+  Bell,
+  TestTube
 } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
+import { ROUTES } from '@/lib/constants';
 
 const Dashboard = () => {
   const { user, profile, signOut, loading } = useAuth();
@@ -85,6 +87,11 @@ const Dashboard = () => {
             <div className="flex items-center space-x-4">
               <Button variant="ghost" size="sm">
                 <Bell className="h-4 w-4" />
+              </Button>
+              <Button variant="ghost" size="sm" asChild>
+                <a href={ROUTES.TEST}>
+                  <TestTube className="h-4 w-4" />
+                </a>
               </Button>
               <Button variant="outline" onClick={handleSignOut}>
                 <LogOut className="h-4 w-4 mr-2" />

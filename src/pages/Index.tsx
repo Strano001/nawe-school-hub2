@@ -2,7 +2,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { Navigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { GraduationCap, School, Users, BookOpen, TrendingUp } from 'lucide-react';
+import { GraduationCap, School, Users, BookOpen, TrendingUp, TestTube } from 'lucide-react';
 
 const Index = () => {
   const { user, loading } = useAuth();
@@ -57,8 +57,11 @@ const Index = () => {
             <Button size="lg" asChild>
               <a href="/auth">Start Free Trial</a>
             </Button>
-            <Button variant="outline" size="lg">
-              Learn More
+            <Button variant="outline" size="lg" asChild>
+              <a href="/test">
+                <TestTube className="h-4 w-4 mr-2" />
+                Test System
+              </a>
             </Button>
           </div>
         </div>

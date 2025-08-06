@@ -8,8 +8,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { GraduationCap, School } from 'lucide-react';
+import { GraduationCap, School, TestTube } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
+import { DEMO_USERS, DEMO_SCHOOL } from '@/lib/constants';
 
 const Auth = () => {
   const { user, signIn, signUp } = useAuth();
@@ -72,9 +73,8 @@ const Auth = () => {
     setLoading(true);
     setError(null);
 
-    // For demo purposes, we'll use a hardcoded school ID
-    // In production, this would be fetched based on school code
-    const mockSchoolId = 'demo-school-id';
+    // Use demo school ID for testing
+    const mockSchoolId = DEMO_SCHOOL.id;
 
     const { error } = await signUp(signupEmail, signupPassword, {
       first_name: firstName,
@@ -100,6 +100,11 @@ const Auth = () => {
     setLoading(false);
   };
 
+  const loginWithDemo = (demoUser: typeof DEMO_USERS[0]) => {
+    setLoginEmail(demoUser.email);
+    setLoginPassword(demoUser.password);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/10 via-background to-secondary/10 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
@@ -112,6 +117,34 @@ const Auth = () => {
           <h1 className="text-3xl font-bold text-foreground">NaWe-SMS</h1>
           <p className="text-muted-foreground mt-2">School Management System</p>
         </div>
+
+        {/* Demo Users Quick Access */}
+        <Card className="mb-4">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-sm flex items-center gap-2">
+              <TestTube className="h-4 w-4" />
+              Demo Accounts
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="pt-0">
+            <div className="grid grid-cols-2 gap-2">
+              {DEMO_USERS.slice(0, 4).map((user, index) => (
+                <Button
+                  key={index}
+                  variant="outline"
+                  size="sm"
+                  onClick={() => loginWithDemo(user)}
+                  className="text-xs"
+                >
+                  {user.role.replace('_', ' ')}
+                </Button>
+              ))}
+            </div>
+            <p className="text-xs text-muted-foreground mt-2">
+              Click to auto-fill login credentials
+            </p>
+          </CardContent>
+        </Card>
 
         <Card>
           <CardHeader>
@@ -216,6 +249,7 @@ const Auth = () => {
                       placeholder="Enter your school code"
                       value={schoolCode}
                       onChange={(e) => setSchoolCode(e.target.value)}
+                      defaultValue={DEMO_SCHOOL.code}
                       required
                     />
                   </div>
