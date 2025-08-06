@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -213,214 +214,138 @@ const Test = () => {
           </p>
         </div>
 
-        <Tabs defaultValue="tests" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="tests">System Tests</TabsTrigger>
-            <TabsTrigger value="demo">Demo Data</TabsTrigger>
-            <TabsTrigger value="info">System Info</TabsTrigger>
+        <Tabs defaultValue="demo" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-1">
+            <TabsTrigger value="demo">Demo Experience</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="tests" className="space-y-6">
+          <TabsContent value="demo" className="space-y-6">
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Shield className="h-5 w-5" />
-                  Automated Test Suite
+                  <Users className="h-5 w-5" />
+                  NaWe-SMS Demo Experience
                 </CardTitle>
                 <CardDescription>
-                  Run comprehensive tests to verify system functionality
+                  Experience the full power of our school management system with realistic demo data
                 </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <Button 
-                  onClick={runAllTests} 
-                  disabled={isRunning}
-                  className="w-full"
-                >
-                  {isRunning ? 'Running Tests...' : 'Run All Tests'}
-                </Button>
-
-                {currentTest && (
-                  <Alert>
-                    <Clock className="h-4 w-4" />
-                    <AlertDescription>
-                      Currently running: {currentTest}
-                    </AlertDescription>
-                  </Alert>
-                )}
-
-                <div className="space-y-2">
-                  {testResults.map((result, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center justify-between p-3 border rounded-lg"
-                    >
-                      <div className="flex items-center gap-3">
-                        {getStatusIcon(result.status)}
-                        <span className="font-medium">{result.name}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        {result.duration && (
-                          <span className="text-sm text-muted-foreground">
-                            {result.duration}ms
-                          </span>
-                        )}
-                        <Badge className={getStatusColor(result.status)}>
-                          {result.message}
-                        </Badge>
-                      </div>
+              <CardContent className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <h3 className="font-semibold text-lg">Start Your Demo Journey</h3>
+                    <p className="text-muted-foreground">
+                      Use any of the demo accounts below to explore different role perspectives in NaWe-SMS. 
+                      Each role offers unique features and capabilities.
+                    </p>
+                    <Link to="/demo">
+                      <Button className="w-full bg-[hsl(var(--nawe-teal))] hover:bg-[hsl(var(--nawe-teal))]/90">
+                        <GraduationCap className="h-4 w-4 mr-2" />
+                        Launch Full Demo Experience
+                      </Button>
+                    </Link>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <h3 className="font-semibold text-lg">Available Demo Roles</h3>
+                    <div className="grid grid-cols-1 gap-2">
+                      {DEMO_USERS.map((user, index) => (
+                        <div key={index} className="flex justify-between items-center p-3 bg-muted rounded-lg">
+                          <div>
+                            <span className="font-medium">{user.first_name} {user.last_name}</span>
+                            <Badge variant="outline" className="ml-2">
+                              {user.role.replace('_', ' ')}
+                            </Badge>
+                          </div>
+                          <div className="text-sm text-muted-foreground">
+                            {user.email}
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  ))}
+                  </div>
+                </div>
+
+                <div className="border-t pt-6">
+                  <h3 className="font-semibold text-lg mb-4">What You Can Explore</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <Card className="border-l-4 border-l-[hsl(var(--nawe-teal))]">
+                      <CardContent className="p-4">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Users className="h-4 w-4 text-[hsl(var(--nawe-teal))]" />
+                          <span className="font-medium">Student Management</span>
+                        </div>
+                        <p className="text-sm text-muted-foreground">
+                          Enrollment, profiles, attendance tracking, and academic records
+                        </p>
+                      </CardContent>
+                    </Card>
+
+                    <Card className="border-l-4 border-l-[hsl(var(--nawe-green))]">
+                      <CardContent className="p-4">
+                        <div className="flex items-center gap-2 mb-2">
+                          <GraduationCap className="h-4 w-4 text-[hsl(var(--nawe-green))]" />
+                          <span className="font-medium">Academic System</span>
+                        </div>
+                        <p className="text-sm text-muted-foreground">
+                          Curriculum management, grading, and progress tracking
+                        </p>
+                      </CardContent>
+                    </Card>
+
+                    <Card className="border-l-4 border-l-[hsl(var(--nawe-yellow))]">
+                      <CardContent className="p-4">
+                        <div className="flex items-center gap-2 mb-2">
+                          <BookOpen className="h-4 w-4 text-[hsl(var(--nawe-yellow))]" />
+                          <span className="font-medium">CBT & Assessments</span>
+                        </div>
+                        <p className="text-sm text-muted-foreground">
+                          Computer-based testing and comprehensive evaluation tools
+                        </p>
+                      </CardContent>
+                    </Card>
+
+                    <Card className="border-l-4 border-l-[hsl(var(--nawe-red))]">
+                      <CardContent className="p-4">
+                        <div className="flex items-center gap-2 mb-2">
+                          <School className="h-4 w-4 text-[hsl(var(--nawe-red))]" />
+                          <span className="font-medium">Administration</span>
+                        </div>
+                        <p className="text-sm text-muted-foreground">
+                          School settings, staff management, and system configuration
+                        </p>
+                      </CardContent>
+                    </Card>
+
+                    <Card className="border-l-4 border-l-[hsl(var(--nawe-blue))]">
+                      <CardContent className="p-4">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Database className="h-4 w-4 text-[hsl(var(--nawe-blue))]" />
+                          <span className="font-medium">Reports & Analytics</span>
+                        </div>
+                        <p className="text-sm text-muted-foreground">
+                          Comprehensive reporting and data-driven insights
+                        </p>
+                      </CardContent>
+                    </Card>
+
+                    <Card className="border-l-4 border-l-[hsl(var(--nawe-teal))]">
+                      <CardContent className="p-4">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Wifi className="h-4 w-4 text-[hsl(var(--nawe-teal))]" />
+                          <span className="font-medium">Communication</span>
+                        </div>
+                        <p className="text-sm text-muted-foreground">
+                          Messaging, announcements, and parent-school communication
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </div>
                 </div>
               </CardContent>
             </Card>
           </TabsContent>
 
-          <TabsContent value="demo" className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Users className="h-5 w-5" />
-                    Demo Users
-                  </CardTitle>
-                  <CardDescription>
-                    Create demo users for testing different roles
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <Button 
-                    onClick={createDemoUsers} 
-                    disabled={isRunning}
-                    className="w-full"
-                  >
-                    {isRunning ? 'Creating Users...' : 'Create Demo Users'}
-                  </Button>
-                  
-                  <div className="space-y-2">
-                    <h4 className="font-medium">Available Demo Accounts:</h4>
-                    {DEMO_USERS.map((user, index) => (
-                      <div key={index} className="flex justify-between items-center p-2 bg-muted rounded">
-                        <div>
-                          <span className="font-medium">{user.email}</span>
-                          <Badge variant="outline" className="ml-2">
-                            {user.role.replace('_', ' ')}
-                          </Badge>
-                        </div>
-                        <span className="text-sm text-muted-foreground">
-                          Password: {user.password}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <School className="h-5 w-5" />
-                    Demo School
-                  </CardTitle>
-                  <CardDescription>
-                    Information about the demo school
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <div>
-                    <span className="font-medium">Name:</span> {DEMO_SCHOOL.name}
-                  </div>
-                  <div>
-                    <span className="font-medium">Code:</span> {DEMO_SCHOOL.code}
-                  </div>
-                  <div>
-                    <span className="font-medium">Address:</span> {DEMO_SCHOOL.address}
-                  </div>
-                  <div>
-                    <span className="font-medium">Phone:</span> {DEMO_SCHOOL.phone}
-                  </div>
-                  <div>
-                    <span className="font-medium">Email:</span> {DEMO_SCHOOL.email}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </TabsContent>
-
-          <TabsContent value="info" className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Database className="h-5 w-5" />
-                    Database
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2">
-                    <div className="flex justify-between">
-                      <span>Provider:</span>
-                      <span>Supabase</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Status:</span>
-                      <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
-                        Connected
-                      </Badge>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Wifi className="h-5 w-5" />
-                    Authentication
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2">
-                    <div className="flex justify-between">
-                      <span>Provider:</span>
-                      <span>Supabase Auth</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Status:</span>
-                      <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
-                        Active
-                      </Badge>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <GraduationCap className="h-5 w-5" />
-                    Features
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-600" />
-                      <span>Multi-tenant</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-600" />
-                      <span>Role-based access</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-green-600" />
-                      <span>Nigerian term system</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </TabsContent>
         </Tabs>
       </div>
     </div>

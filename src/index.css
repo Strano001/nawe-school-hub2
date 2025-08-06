@@ -17,42 +17,47 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* NaWe Logo Colors - Primary (Teal) */
+    --primary: 188 70% 35%;
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* NaWe Logo Colors - Secondary (Green) */
+    --secondary: 134 50% 45%;
+    --secondary-foreground: 0 0% 98%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
+    /* NaWe Logo Colors - Accent (Golden Yellow) */
+    --accent: 48 95% 53%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* NaWe Logo Colors - Destructive (Red) */
+    --destructive: 8 75% 55%;
+    --destructive-foreground: 0 0% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 188 70% 35%;
 
     --radius: 0.5rem;
 
+    /* NaWe Brand Colors for Sidebars */
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
+    --sidebar-primary: 188 70% 35%;
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 188 70% 35%;
 
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Additional NaWe Colors */
+    --nawe-teal: 188 70% 35%;
+    --nawe-green: 134 50% 45%;
+    --nawe-yellow: 48 95% 53%;
+    --nawe-red: 8 75% 55%;
+    --nawe-blue: 215 75% 45%;
   }
 
   .dark {
@@ -65,32 +70,42 @@ All colors MUST be HSL.
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
+    /* NaWe Logo Colors - Adjusted for Dark Mode */
+    --primary: 188 70% 45%;
     --primary-foreground: 222.2 47.4% 11.2%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 134 50% 55%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
 
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 48 85% 63%;
+    --accent-foreground: 222.2 47.4% 11.2%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 8 75% 65%;
+    --destructive-foreground: 222.2 47.4% 11.2%;
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --ring: 188 70% 45%;
+
+    /* Dark Mode Sidebar with NaWe Branding */
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary: 188 70% 45%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 240 3.7% 15.9%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 188 70% 45%;
+
+    /* Dark Mode NaWe Colors */
+    --nawe-teal: 188 70% 45%;
+    --nawe-green: 134 50% 55%;
+    --nawe-yellow: 48 85% 63%;
+    --nawe-red: 8 75% 65%;
+    --nawe-blue: 215 75% 55%;
   }
 }
 

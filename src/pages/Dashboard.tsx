@@ -76,9 +76,11 @@ const Dashboard = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <div className="bg-primary text-primary-foreground p-2 rounded-lg">
-                <GraduationCap className="h-6 w-6" />
-              </div>
+              <img 
+                src="/lovable-uploads/a34045c0-a003-4c9a-98cb-3cff3573fdad.png" 
+                alt="NaWe Logo" 
+                className="h-10 w-10 object-contain"
+              />
               <div>
                 <h1 className="text-2xl font-bold">NaWe-SMS</h1>
                 <p className="text-sm text-muted-foreground">School Management System</p>
@@ -89,8 +91,9 @@ const Dashboard = () => {
                 <Bell className="h-4 w-4" />
               </Button>
               <Button variant="ghost" size="sm" asChild>
-                <Link to={ROUTES.TEST}>
+                <Link to="/demo">
                   <TestTube className="h-4 w-4" />
+                  Demo
                 </Link>
               </Button>
               <Button variant="outline" onClick={handleSignOut}>

@@ -110,9 +110,11 @@ const Auth = () => {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <div className="flex items-center justify-center mb-4">
-            <div className="bg-primary text-primary-foreground p-3 rounded-lg">
-              <GraduationCap className="h-8 w-8" />
-            </div>
+            <img 
+              src="/lovable-uploads/a34045c0-a003-4c9a-98cb-3cff3573fdad.png" 
+              alt="NaWe Logo" 
+              className="h-16 w-16 object-contain"
+            />
           </div>
           <h1 className="text-3xl font-bold text-foreground">NaWe-SMS</h1>
           <p className="text-muted-foreground mt-2">School Management System</p>
